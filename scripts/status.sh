@@ -22,6 +22,9 @@ WIFI_SSID=$(networksetup -getairportnetwork en0 | cut -c 24-)
 
 DND=$(defaults -currentHost read com.apple.notificationcenterui doNotDisturb)
 
+UNREAD_CS="$(ls ~/.mailbox/centralesupelec/inbox/new | wc -l )"
+UNREAD_GMAIL="$(ls ~/.mailbox/personal/inbox/new | wc -l )"
+
 echo $(cat <<-EOF
 {
     "datetime": {
@@ -40,7 +43,11 @@ echo $(cat <<-EOF
         "status": "$WIFI_STATUS",
         "ssid": "$WIFI_SSID"
     },
-    "dnd": $DND
+    "dnd": $DND,
+    "mail": {
+        "cs": $UNREAD_CS,
+        "gmail" : $UNREAD_GMAIL
+    }
 }
 EOF
 )
