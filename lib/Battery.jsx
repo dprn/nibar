@@ -4,6 +4,7 @@ const render = ({ output }) => {
   let charging = output.charging;
   let percentage = output.percentage;
   let remaining = output.remaining;
+  let icon = percentage < 50 ? (percentage < 25 ? "􀛪" : "􀛩 ") : "􀛨";
   return (
     <div>
       <div
@@ -13,7 +14,7 @@ const render = ({ output }) => {
             : null
         }
       >
-        <span>{charging ? "􀋦" : null} {percentage}%</span>
+        <span>{charging ? "􀋦" : null} {icon} {percentage}%</span>
       </div>
     </div>
   );
